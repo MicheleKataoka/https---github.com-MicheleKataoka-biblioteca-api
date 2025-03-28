@@ -21,7 +21,7 @@ export class LivrosArmazenados{
         )
         return livro;
     }
-    private buscaPorID(id: string){
+    async buscaPorID(id: string){
         const possivel = this.Livros.find(
             livroSalvo => livroSalvo.id === id
         )
@@ -30,13 +30,27 @@ export class LivrosArmazenados{
         }
         return possivel;
     }
-    async remove(id: string){
-        const livro = this.buscaPorID(id);
-
-        this.Livros = this.Livros.filter(
-            livroSalvo => livroSalvo.id !==id
+    async buscaPorGenero(genero: string){
+        const possivel = this.Livros.find(
+            livroSalvo => livroSalvo.genero === genero
         )
+        if (!possivel){
+            throw new Error ('Livro não encontrado')
+        }
+        return possivel;
+    }
+    async remove(id: string) {
+        const livro = this.buscaPorID(id);
+    
+        if (!livro) {
+            throw new Error('Livro não encontrado');
+        }
+        this.Livros = this.Livros.filter(livroSalvo => livroSalvo.id !== id);
         return livro;
+
+    
+        }
+    
     }
     get Livros(){
         return this.Livros

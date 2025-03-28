@@ -15,7 +15,7 @@ export class BibliotecaController{
     async cria(@Body() dados: criaLivroDTO){
         var livro = new LivroEntity( uuid(), dados.titulo, dados.autor, dados.anoPublicacao, dados.genero, dados.sinopse)
 
-        this.cIsLivrosArmazenados.Adicionar(livro);
+        await this.cIsLivrosArmazenados.Adicionar(livro);
         var retorno={
             id: livro.id,
             message: 'Livro Adicionado'

@@ -1,23 +1,21 @@
-import { isNumber, isString } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
 
-export class criaLivroDTO{
-    @isString()
+export class criaLivroDTO {
+    @IsString()
     id: string;
 
-    @isString()
+    @IsString()
     titulo: string;
 
-    
-
-    @isString()
+    @IsString()
     autor: string;
     
-    @isNumber()
+    @IsNumber()
     anoPublicacao: number;
 
-    @isString()
+    @IsString()
     genero: string;
 
-    @isString()
+    @IsString()
     sinopse: string;
 }
