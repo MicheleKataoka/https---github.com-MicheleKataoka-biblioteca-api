@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
-import { BibliotecaController } from "./biblioteca.controller";
-import { LivrosArmazenados } from "./biblioteca.dm";
+import { BibliotecaController } from "./livro.controller";
+import { LivrosArmazenados } from "./livro.dm";
 
 @Module({
     controllers: [BibliotecaController],

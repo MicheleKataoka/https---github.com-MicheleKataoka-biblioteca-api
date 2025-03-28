@@ -1,9 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import {u4 as uuid} from 'uuid'
+import { v4 as uuid } from 'uuid';
 import { criaLivroDTO } from "./dto/cadastroDeLivros.dto";
 import { alteraLivroDTO } from "./dto/manupulacaoDeLivros.dto";
-import { LivrosArmazenados } from "./biblioteca.dm";
-import { LivroEntity } from "./filme.entity";
+import { LivrosArmazenados } from "./livro.dm";
+import { LivroEntity } from "./livro.entity";
+import { ListaLivrosDTO } from "./dto/listaLivros.dto";
 
 @Controller('/biblioteca')
 export class BibliotecaController{
@@ -66,3 +67,6 @@ export class BibliotecaController{
             filme: livroRemovido,
             message: 'Livro removido'
         }
+    }
+}
+

@@ -7,6 +7,8 @@ export class criaLivroDTO{
     @isString()
     titulo: string;
 
+    
+
     @isString()
     autor: string;
     

@@ -1,4 +1,5 @@
-import { isString, isNumber } from "class-validator";
+import { isNumber, isString } from "class-validator";
+
 export class alteraLivroDTO{
     @isString()
     id: string;

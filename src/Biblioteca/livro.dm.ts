@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common";
-import { LivroEntity } from "./filme.entity";
+import { LivroEntity } from "./livro.entity";
 
 
 @Injectable()
 export class LivrosArmazenados{
 
-    Adicionar(Livro: LivroEntity){
-        this.#livros.push(Livro);
+    async Adicionar(Livro: LivroEntity){
+        this.Livros.push(Livro);
     }
     atualiza(id: string, dadosAtualizacao: Partial<LivroEntity>){
         const livro = this.buscaPorID(id);
@@ -14,7 +14,7 @@ export class LivrosArmazenados{
         Object.entries(dadosAtualizacao).forEach(
             ([chave, valor]) => {
                 if (chave === 'id'){
-                    return
+                    return 
                 }
                 livro[chave] = valor;
             }
@@ -22,7 +22,7 @@ export class LivrosArmazenados{
         return livro;
     }
     private buscaPorID(id: string){
-        const possivel = this.#livros.find(
+        const possivel = this.Livros.find(
             livroSalvo => livroSalvo.id === id
         )
         if (!possivel){
@@ -33,12 +33,12 @@ export class LivrosArmazenados{
     async remove(id: string){
         const livro = this.buscaPorID(id);
 
-        this.#livros = this.#livros.filter(
+        this.Livros = this.Livros.filter(
             livroSalvo => livroSalvo.id !==id
         )
         return livro;
     }
     get Livros(){
-        return this.#livros
+        return this.Livros
     }
 }
