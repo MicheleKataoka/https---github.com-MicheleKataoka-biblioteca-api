@@ -1,3 +1,4 @@
+import { isString, isNumber } from "class-validator";
 export class alteraLivroDTO{
     @isString()
     id: string;

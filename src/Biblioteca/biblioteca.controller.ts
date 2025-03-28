@@ -1,4 +1,9 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import {u4 as uuid} from 'uuid'
+import { criaLivroDTO } from "./dto/cadastroDeLivros.dto";
+import { alteraLivroDTO } from "./dto/manupulacaoDeLivros.dto";
+import { LivrosArmazenados } from "./biblioteca.dm";
+import { LivroEntity } from "./filme.entity";
 
 @Controller('/biblioteca')
 export class BibliotecaController{
@@ -18,7 +23,7 @@ export class BibliotecaController{
     }
     @Put ('/:id')
     async atualiza(@Param('id')  id: string, @Body() novosDados: alteraLivroDTO ){
-        const livroAtualizado = await this.cIsLivrosArmazenados.atualiza(id, novosDados
+        const livroAtualizado = await this.cIsLivrosArmazenados.atualiza(id, novosDados)
         
         return{
             livro: livroAtualizado,
@@ -27,8 +32,8 @@ export class BibliotecaController{
     }
    
     @Get()
-    async Retorno(0{
-        const livrosListados = await this.cIsLivrosArmazenados.Livro;
+    async Retorno(){
+        const livrosListados = await this.cIsLivrosArmazenados.Livros;
         const listaRetorno = livrosListados.map(
             livro => new ListaLivrosDTO(
                 livro.id,
@@ -40,18 +45,18 @@ export class BibliotecaController{
             )
         );
         return listaRetorno;
-    })
+    }
     
-    @Get('/listar/:id')
+    @Get('/id/:id')
     async retornoLivroPorId(@Param('id') id: string){
-        const livroID = await this.cIsLivrosArmazenados.Listar(id);
+        const livroID = await this.cIsLivrosArmazenados.buscaPorID(id);
         return livroID
     }
       
-    @Get('/listar/:genero')
+    @Get('/genero/:genero')
     async retornoLivroPorGenero(@Param('genero') genero: string){
-        const livroGenero = await this.cIsLivrosArmazenados.Listar(genero);
-        return livroGenero
+        const livroGenero = await this.cIsLivrosArmazenados.buscaPorGenero(genero);
+        return livroGenero;
     }
     @Delete('/:id')
     async remove(@Param('id') id: string){
@@ -61,4 +66,3 @@ export class BibliotecaController{
             filme: livroRemovido,
             message: 'Livro removido'
         }
-}
